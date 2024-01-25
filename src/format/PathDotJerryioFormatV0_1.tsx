@@ -186,20 +186,53 @@ export class PathDotJerryioFormatV0_1 implements Format {
 
     let fileContent = "";
 
-    const uc = new UnitConverter(app.gc.uol, UnitOfLength.Centimeter);
+    const uc = new UnitConverter(app.gc.uol, UnitOfLength.Inch);
     const density = new Quantity(app.gc.pointDensity, app.gc.uol);
 
     for (const path of app.paths) {
       fileContent += `#PATH-POINTS-START ${path.name}\n`;
-
-      const points = getPathPoints(path, density).points;
-
+      const x = path.segments.at(0)?.first.x;
+      const y = path.segments.at(0)?.first.y;
+      fileContent += `\nrobot = point(${x},${y}); \n`;
+      /*
+      path.controls.forEach(control => {
+        
+        const x = uc.fromAtoB(control.x).toUser();
+        const y = uc.fromAtoB(control.y).toUser();
+        fileContent += `${x},${y},${control.name}\n`;
+      });
+      */
+      path.segments.forEach(segment => {
+        if (segment.isCubic()) {
+          fileContent += `Stanley::setPath(std::vector<point>{ \n`;
+          segment.controls.forEach(control => {
+            let x = uc.fromAtoB(control.x).toUser();
+            let y = uc.fromAtoB(control.y).toUser();
+            fileContent += `{ ${x},${y} }`;
+            if (control !== segment.last) {
+              fileContent += `, \n`;
+            }
+          });
+          fileContent += `}); \nStanley::run(meduim); \n`;
+        } else if (segment.isLinear()) {
+          let x1 = uc.fromAtoB(segment.first.x).toUser();
+          let y1 = uc.fromAtoB(segment.first.y).toUser();
+          let x2 = uc.fromAtoB(segment.last.x).toUser();
+          let y2 = uc.fromAtoB(segment.last.y).toUser();
+          let angle = (Math.atan2(x2 - x1, y2 - y1) * 180) / Math.PI;
+          let dist = segment.first.distance(segment.last);
+          fileContent += `rotateTo(${angle}); \n`;
+          fileContent += `inchDrive(${dist}); \n`;
+        }
+      });
+      /*
       for (const point of points) {
         const x = uc.fromAtoB(point.x).toUser();
         const y = uc.fromAtoB(point.y).toUser();
         if (isCoordinateWithHeading(point)) fileContent += `${x},${y},${point.speed.toUser()},${point.heading}\n`;
         else fileContent += `${x},${y},${point.speed.toUser()}\n`;
       }
+      */
     }
 
     fileContent += "#PATH.JERRYIO-DATA " + JSON.stringify(app.exportPDJData());

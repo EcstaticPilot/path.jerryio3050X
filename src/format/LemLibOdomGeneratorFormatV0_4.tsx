@@ -286,9 +286,8 @@ export class LemLibOdomGeneratorFormatV0_4 implements Format {
       for (const point of points) {
         // ALGO: Only coordinate points are supported in LemLibOdom format
         const relative = euclideanRotation(heading, point.subtract(offsets));
-        rtn += `${gc.chassisName}.moveTo(${uc.fromAtoB(relative.x).toUser()}, ${uc.fromAtoB(relative.y).toUser()}, ${
-          gc.movementTimeout
-        });\n`;
+        rtn += `rotateTo(${heading}); \n`;
+        rtn += `drive(${uc.fromAtoB(relative.x).toUser()}, ${uc.fromAtoB(relative.y).toUser()});\n`;
       }
     }
 
