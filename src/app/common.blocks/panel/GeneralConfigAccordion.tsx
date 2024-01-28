@@ -17,10 +17,9 @@ import { LayoutType } from "@core/Layout";
 import { PanelContainer } from "./Panel";
 import TuneIcon from "@mui/icons-material/Tune";
 import "./GeneralConfigAccordion.scss";
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
-
-import TextareaAutosize from 'react-textarea-autosize';
+import TextareaAutosize from "react-textarea-autosize";
 const GeneralConfigPanelBody = observer((props: {}) => {
   let decoder = new TextDecoder("utf-8");
   const { app, assetManager, confirmation, modals, appPreferences } = getAppStores();
@@ -31,16 +30,16 @@ const GeneralConfigPanelBody = observer((props: {}) => {
   // Inside your component
   useEffect(() => {
     const intervalId = setInterval(() => {
-    const newValue = app.exportFile();
-    console.log(newValue);
-    let arrayBuffer = newValue; 
-    let string = decoder.decode(arrayBuffer);
-    let index = string.indexOf(`#PATH.JERRYIO-DATA`);
-    if (index !== -1) {
-      string = string.substring(0, index);
-    }
-    console.log(string);
-    setExportFileValue(string);
+      const newValue = app.exportFile();
+      console.log(newValue);
+      let arrayBuffer = newValue;
+      let string = decoder.decode(arrayBuffer);
+      let index = string.indexOf(`#PATH.JERRYIO-DATA`);
+      if (index !== -1) {
+        string = string.substring(0, index);
+      }
+      console.log(string);
+      setExportFileValue(string);
     }, 100); // Adjust the interval as needed
 
     // Cleanup function to clear the interval when the component unmounts
@@ -48,7 +47,7 @@ const GeneralConfigPanelBody = observer((props: {}) => {
   }, []); // Empty dependency array means this effect runs once on mount and cleanup on unmount
 
   // Then use exportFileValue in your input field
-  <input type="text" value={exportFileValue} readOnly />
+  <input type="text" value={exportFileValue} readOnly />;
   const formats = getAllFormats();
 
   const changeFormat = action((index: number) => {
@@ -213,8 +212,12 @@ const GeneralConfigPanelBody = observer((props: {}) => {
       <Typography sx={{ marginTop: "16px" }} gutterBottom>
         Code Output
       </Typography>
-      <TextareaAutosize value={exportFileValue} readOnly style={{ width: '100%', backgroundColor: "transparent", color: 'white' }} />
-      
+      <TextareaAutosize
+        value={exportFileValue}
+        readOnly
+        style={{ width: "100%", backgroundColor: "transparent", color: "white" }}
+      />
+
       {gc.getConfigPanel()}
     </>
   );
