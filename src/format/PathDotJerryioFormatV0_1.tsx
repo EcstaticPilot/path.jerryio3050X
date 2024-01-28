@@ -147,7 +147,7 @@ export class PathDotJerryioFormatV0_1 implements Format {
   }
 
   getName(): string {
-    return "path.jerryio v0.1.x (cm, rpm)";
+    return "3050X custom (in)";
   }
 
   register(app: MainApp): void {
@@ -190,10 +190,10 @@ export class PathDotJerryioFormatV0_1 implements Format {
     const density = new Quantity(app.gc.pointDensity, app.gc.uol);
 
     for (const path of app.paths) {
-      fileContent += `#PATH-POINTS-START ${path.name}\n`;
+      //fileContent += `#PATH-POINTS-START ${path.name}\n`;
       const x = path.segments.at(0)?.first.x;
       const y = path.segments.at(0)?.first.y;
-      fileContent += `\nrobot = point(${x},${y}); \n`;
+      fileContent += `robot = point(${x},${y}); \n`;
       /*
       path.controls.forEach(control => {
         
@@ -221,8 +221,8 @@ export class PathDotJerryioFormatV0_1 implements Format {
           let y2 = uc.fromAtoB(segment.last.y).toUser();
           let angle = (Math.atan2(x2 - x1, y2 - y1) * 180) / Math.PI;
           let dist = segment.first.distance(segment.last);
-          fileContent += `rotateTo(${angle}); \n`;
-          fileContent += `inchDrive(${dist}); \n`;
+          fileContent += `rotateTo(${uc.fromAtoB(angle).toUser()}); \n`;
+          fileContent += `inchDrive(${uc.fromAtoB(dist).toUser()}); \n`;
         }
       });
       /*
