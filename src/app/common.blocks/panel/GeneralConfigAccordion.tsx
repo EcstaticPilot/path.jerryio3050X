@@ -23,34 +23,6 @@ const GeneralConfigPanelBody = observer((props: {}) => {
 
   const gc = app.gc;
 
-<<<<<<< HEAD
-  // Inside your component
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      let newValue;
-      try {
-        newValue = app.exportFile();
-      } catch (error) {
-        return;
-      }
-      let arrayBuffer = newValue;
-      let string = decoder.decode(arrayBuffer);
-      let index = string.indexOf(`#PATH.JERRYIO-DATA`);
-      if (index !== -1) {
-        string = string.substring(0, index);
-      }
-      console.log(string);
-      setExportFileValue(string);
-    }, 100); // Adjust the interval as needed
-
-    // Cleanup function to clear the interval when the component unmounts
-    return () => clearInterval(intervalId);
-  }, []); // Empty dependency array means this effect runs once on mount and cleanup on unmount
-
-  // Then use exportFileValue in your input field
-  <input type="text" value={exportFileValue} readOnly />;
-=======
->>>>>>> parent of 4a16e56 (commit1)
   const formats = getAllFormats();
 
   const changeFormat = action((index: number) => {
