@@ -221,7 +221,7 @@ export class PathDotJerryioFormatV0_1 implements Format {
           let y2 = uc.fromAtoB(segment.last.y).toUser();
           let angle = (Math.atan2(x2 - x1, y2 - y1) * 180) / Math.PI;
           let dist = segment.first.distance(segment.last);
-          fileContent += `rotateTo(${(angle)});\n`;
+          fileContent += `rotateTo(${angle});\n`;
           fileContent += `inchDrive(${uc.fromAtoB(dist).toUser()});\n`;
         }
       });

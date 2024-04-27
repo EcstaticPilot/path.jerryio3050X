@@ -77,9 +77,7 @@ export interface Format {
 
 export function getAllFormats(): Format[] {
   return [
-    ...[
-      new LemLibOdomGeneratorFormatV0_4()
-    ],
+    ...[new LemLibOdomGeneratorFormatV0_4()],
     ...(isExperimentalFeaturesEnabled() ? [new LemLibFormatV1_0()] : []),
     ...[new RigidMovementsFormatV0_1(), new HolonomicMovementsFormatV0_1(), new PathDotJerryioFormatV0_1()]
   ];
