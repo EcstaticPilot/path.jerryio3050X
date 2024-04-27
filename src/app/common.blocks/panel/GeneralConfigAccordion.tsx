@@ -1,4 +1,4 @@
-import { Box, MenuItem, Select, SelectChangeEvent, TextareaAutosize, Typography } from "@mui/material";
+import { Box, MenuItem, Select, SelectChangeEvent, Typography } from "@mui/material";
 import { action } from "mobx";
 import { observer } from "mobx-react-lite";
 import { getAllFormats } from "@format/Format";
@@ -15,17 +15,15 @@ import { FieldImageAsset, FieldImageOriginType } from "@core/Asset";
 import { AssetManagerModalSymbol } from "../modal/AssetManagerModal";
 import { LayoutType } from "@core/Layout";
 import { PanelContainer } from "./Panel";
-import { useState, useEffect } from "react";
 import TuneIcon from "@mui/icons-material/Tune";
 import "./GeneralConfigAccordion.scss";
 
 const GeneralConfigPanelBody = observer((props: {}) => {
-  let decoder = new TextDecoder("utf-8");
   const { app, assetManager, confirmation, modals, appPreferences } = getAppStores();
 
   const gc = app.gc;
-  const [exportFileValue, setExportFileValue] = useState(() => String(app.exportFile()));
 
+<<<<<<< HEAD
   // Inside your component
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -51,6 +49,8 @@ const GeneralConfigPanelBody = observer((props: {}) => {
 
   // Then use exportFileValue in your input field
   <input type="text" value={exportFileValue} readOnly />;
+=======
+>>>>>>> parent of 4a16e56 (commit1)
   const formats = getAllFormats();
 
   const changeFormat = action((index: number) => {
@@ -212,14 +212,6 @@ const GeneralConfigPanelBody = observer((props: {}) => {
           }}
         />
       </Box>
-      <Typography sx={{ marginTop: "16px" }} gutterBottom>
-        Code Output
-      </Typography>
-      <TextareaAutosize
-        value={exportFileValue}
-        readOnly
-        style={{ width: "100%", backgroundColor: "transparent", color: "white" }}
-      />
       {gc.getConfigPanel()}
     </>
   );
