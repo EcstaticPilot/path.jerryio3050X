@@ -4,7 +4,6 @@ import { PointCalculationResult } from "@core/Calculation";
 import { APP_VERSION, MainApp } from "@core/MainApp";
 import { Range } from "semver";
 import { UnitOfLength } from "@core/Unit";
-import { LemLibFormatV0_4 } from "./LemLibFormatV0_4";
 import { PathDotJerryioFormatV0_1 } from "./PathDotJerryioFormatV0_1";
 import { LemLibOdomGeneratorFormatV0_4 } from "./LemLibOdomGeneratorFormatV0_4";
 import { LemLibFormatV1_0 } from "./LemLibFormatV1_0";
@@ -79,7 +78,6 @@ export interface Format {
 export function getAllFormats(): Format[] {
   return [
     ...[
-      new LemLibFormatV0_4(), //
       new LemLibOdomGeneratorFormatV0_4()
     ],
     ...(isExperimentalFeaturesEnabled() ? [new LemLibFormatV1_0()] : []),

@@ -191,9 +191,9 @@ export class PathDotJerryioFormatV0_1 implements Format {
 
     for (const path of app.paths) {
       //fileContent += `#PATH-POINTS-START ${path.name}\n`;
-      const x = path.segments.at(0)?.first.x;
-      const y = path.segments.at(0)?.first.y;
-      fileContent += `robot = point(${x},${y}); \n`;
+      let x = path.segments.at(0)?.first?.x ?? 0;
+      let y = path.segments.at(0)?.first?.y ?? 0;
+      fileContent += `robot = point(${uc.fromAtoB(x).toUser()},${uc.fromAtoB(y).toUser()});\n`;
       /*
       path.controls.forEach(control => {
         
@@ -204,7 +204,7 @@ export class PathDotJerryioFormatV0_1 implements Format {
       */
       path.segments.forEach(segment => {
         if (segment.isCubic()) {
-          fileContent += `Stanley::setPath(std::vector<point>{ \n`;
+          fileContent += `Stanley::setPath(std::vector<point>{\n`;
           segment.controls.forEach(control => {
             let x = uc.fromAtoB(control.x).toUser();
             let y = uc.fromAtoB(control.y).toUser();
@@ -213,7 +213,7 @@ export class PathDotJerryioFormatV0_1 implements Format {
               fileContent += `, \n`;
             }
           });
-          fileContent += `}); \nStanley::run(meduim); \n`;
+          fileContent += `}); \nStanley::run(meduim);\n`;
         } else if (segment.isLinear()) {
           let x1 = uc.fromAtoB(segment.first.x).toUser();
           let y1 = uc.fromAtoB(segment.first.y).toUser();
@@ -221,8 +221,8 @@ export class PathDotJerryioFormatV0_1 implements Format {
           let y2 = uc.fromAtoB(segment.last.y).toUser();
           let angle = (Math.atan2(x2 - x1, y2 - y1) * 180) / Math.PI;
           let dist = segment.first.distance(segment.last);
-          fileContent += `rotateTo(${uc.fromAtoB(angle).toUser()}); \n`;
-          fileContent += `inchDrive(${uc.fromAtoB(dist).toUser()}); \n`;
+          fileContent += `rotateTo(${(angle)});\n`;
+          fileContent += `inchDrive(${uc.fromAtoB(dist).toUser()});\n`;
         }
       });
       /*

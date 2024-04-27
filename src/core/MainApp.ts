@@ -26,7 +26,6 @@ import { SpeedEditor } from "./SpeedEditor";
 import { AssetManager, getDefaultBuiltInFieldImage } from "./Asset";
 import { Modals } from "@core/Modals";
 import { Preferences, getPreference } from "./Preferences";
-import { LemLibFormatV0_4 } from "../format/LemLibFormatV0_4";
 import { LemLibFormatV1_0 } from "../format/LemLibFormatV1_0";
 
 export const APP_VERSION = new SemVer(APP_VERSION_STRING);
@@ -391,7 +390,7 @@ export class MainApp {
       return;
     }
 
-    const testFormat2 = new LemLibFormatV1_0(); // Sample binary path file
+    const testFormat2 = new PathDotJerryioFormatV0_1(); // Sample binary path file
     const importResult2 = testFormat2.importPDJDataFromFile(buffer);
     if (importResult2 !== undefined) {
       await this.importPDJData(importResult2);
@@ -412,7 +411,7 @@ export class MainApp {
       format = this.format.createNewInstance();
       paths = format.importPathsFromFile(buffer);
     } catch (err) {
-      format = new LemLibFormatV0_4(); // Sample text path file
+      format = new LemLibFormatV1_0(); // Sample text path file
       paths = format.importPathsFromFile(buffer);
     }
 
