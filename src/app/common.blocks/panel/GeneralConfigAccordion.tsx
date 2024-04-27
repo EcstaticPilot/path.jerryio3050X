@@ -29,7 +29,7 @@ const GeneralConfigPanelBody = observer((props: {}) => {
   // Inside your component
   useEffect(() => {
     const intervalId = setInterval(() => {
-      /*let newValue;
+      let newValue;
       try {
         newValue = app.exportFile();
       } catch (error) {
@@ -43,7 +43,6 @@ const GeneralConfigPanelBody = observer((props: {}) => {
       }
       console.log(string);
       setExportFileValue(string);
-      */
     }, 100); // Adjust the interval as needed
 
     // Cleanup function to clear the interval when the component unmounts
