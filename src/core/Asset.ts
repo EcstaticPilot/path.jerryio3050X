@@ -13,7 +13,7 @@ import { Hash } from "fast-sha256";
 import { makeAutoObservable, makeObservable, observable } from "mobx";
 import { ValidateNumber, hex, makeId, TextEncoder } from "./Util";
 import localforage from "localforage";
-import builtInFieldImage2024 from "../static/VRC-HighStakes.png";
+import builtInFieldImage2024 from "../static/V5RC-HighStakes.png";
 import builtInFieldPerimeter from "../static/VRC-FieldPerimeter-TileColor66_71-2000x2000.png";
 
 export const DEFAULT_ACCEPT_FILE_EXT = [".png", ".jpg", ".jpeg", ".gif"] as const;
@@ -420,18 +420,11 @@ const builtInAssets: FieldImageAsset<FieldImageOriginType>[] = [
   // 3683 = 145*2.54*10 ~= 3676.528, the size of the field perimeter in Fusion 360
   createBuiltInFieldImage("VRC 2025 - High Stakes", 3690, builtInFieldImage2024),
   createBuiltInFieldImage(
-    "VRC 2024 - Over Under (Skill)",
+    "V5RC 2024 - High Stakes (Skill)",
     3690,
-    "/static/VRC-OverUnder-Skill-TileColor66_71-2000x2000.png"
-  ),
-  createBuiltInFieldImage(
-    "VRC 2024 - Over Under (VEX U)",
-    3690,
-    "/static/VRC-OverUnder-VEXU-TileColor66_71-2000x2000.png"
+    "/static/V5RC-HighStakes-skills.png"
   ),
   createBuiltInFieldImage("VRC Field Perimeter", 3690, builtInFieldPerimeter),
-  createBuiltInFieldImage("VIQC 2024 - Full Volume", 1920, "/static/VIQC-FullVolume-8ft6ft-2000x1517.png"),
-  createBuiltInFieldImage("VIQC Field Perimeter 8ft×6ft", 1920, "/static/VIQC-FieldPerimeter-8ft6ft-2000x1517.png")
 ];
 
 export function getDefaultBuiltInFieldImage(): FieldImageAsset<FieldImageOriginType> {
