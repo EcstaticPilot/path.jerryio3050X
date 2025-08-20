@@ -420,12 +420,8 @@ export class AssetManager {
 const builtInAssets: FieldImageAsset<FieldImageOriginType>[] = [
   // 3683 = 145*2.54*10 ~= 3676.528, the size of the field perimeter in Fusion 360
   createBuiltInFieldImage("VRC 2025 - Push Back", 3690, "/static/V5RC-PushBack.png"),
-  createBuiltInFieldImage(
-    "V5RC 2025 - Push Back (Skill)",
-    3690,
-    "/static/V5RC-PushBack-Skills.png"
-  ),
-  createBuiltInFieldImage("VRC Field Perimeter", 3690, builtInFieldPerimeter),
+  createBuiltInFieldImage("V5RC 2025 - Push Back (Skill)", 3690, "/static/V5RC-PushBack-Skills.png"),
+  createBuiltInFieldImage("VRC Field Perimeter", 3690, builtInFieldPerimeter)
 ];
 
 export function getDefaultBuiltInFieldImage(): FieldImageAsset<FieldImageOriginType> {
