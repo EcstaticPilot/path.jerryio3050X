@@ -1,4 +1,6 @@
 #!/bin/bash
-cd /home/nikhilr/GitHub/path.jerryio3050X/
+cd /home/nikhilr/Github/path.jerryio3050X/
+
+floorp localhost:3000
 npm run start
 echo Done!

@@ -30,7 +30,7 @@ class GeneralConfigImpl implements GeneralConfig {
   showRobot: boolean = false;
   @ValidateNumber(num => num > 0 && num <= 1000) // Don't use IsEnum
   @Expose()
-  uol: UnitOfLength = UnitOfLength.Centimeter;
+  uol: UnitOfLength = UnitOfLength.Inch;
   @IsPositive()
   @Expose()
   pointDensity: number = 2;

@@ -15,6 +15,7 @@ import { ValidateNumber, hex, makeId, TextEncoder } from "./Util";
 import localforage from "localforage";
 import builtInFieldImage2024 from "../static/V5RC-HighStakes.png";
 import builtInFieldPerimeter from "../static/VRC-FieldPerimeter-TileColor66_71-2000x2000.png";
+import builtInSkillsImage2024 from "../static/V5RC-PushBack-Skills.png";
 
 export const DEFAULT_ACCEPT_FILE_EXT = [".png", ".jpg", ".jpeg", ".gif"] as const;
 
@@ -418,11 +419,11 @@ export class AssetManager {
 
 const builtInAssets: FieldImageAsset<FieldImageOriginType>[] = [
   // 3683 = 145*2.54*10 ~= 3676.528, the size of the field perimeter in Fusion 360
-  createBuiltInFieldImage("VRC 2025 - High Stakes", 3690, builtInFieldImage2024),
+  createBuiltInFieldImage("VRC 2025 - Push Back", 3690, "/static/V5RC-PushBack.png"),
   createBuiltInFieldImage(
-    "V5RC 2024 - High Stakes (Skill)",
+    "V5RC 2025 - Push Back (Skill)",
     3690,
-    "/static/V5RC-HighStakes-skills.png"
+    "/static/V5RC-PushBack-Skills.png"
   ),
   createBuiltInFieldImage("VRC Field Perimeter", 3690, builtInFieldPerimeter),
 ];
